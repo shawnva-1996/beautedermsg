@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeautéMagic: Your Beauty Partner</title>
+    <!-- Use the same font as the provided HTML -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Use Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --bg-2: #ffffff;
+            --accent: #16a34a;
+            --accent-2: #4ade80;
+            --muted: #4b5563;
+            --text: #1f2937;
+            --card: #e5e7eb;
+        }
+
+        /* Replicating the background from the provided HTML */
+        body {
+            height: 100%;
+            background: radial-gradient(1200px 700px at 70% 10%, var(--card) 0%, var(--bg) 35%, var(--bg-2) 100%) fixed;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- Scroll snap sections --- */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 6rem 1rem;
+            scroll-snap-align: start;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        main {
+            scroll-snap-type: y proximity;
+        }
+
+        .card-neo {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .8), rgba(255, 255, 255, .9));
+            border: 1px solid rgba(0, 0, 0, .08);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+            padding: 1.5rem;
+        }
+
+        .eyebrow {
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: .8rem;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+            font-weight: 900;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, var(--accent), #22c55e);
+            color: white;
+        }
+
+        .img-frame {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, .1);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .15);
+        }
+
+        .img-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container mx-auto">
+
+        <!-- Slide 1: Intro -->
+        <section id="slide-1" class="section">
+            <div class="mx-auto text-center px-4">
+                <div class="md:w-3/4 lg:w-1/2 mx-auto">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6">
+                        Everyone deserves to feel and look <span class="highlight px-3 py-1 rounded-full">beautiful</span>
+                    </h1>
+                </div>
+                <div class="img-frame w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto mt-8">
+                    <img src="rhea_tan.jpg" alt="Rhea Tan" class="w-full h-auto object-cover" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Vision -->
+        <section id="slide-2" class="section flex items-center justify-center flex-col md:flex-row">
+            <div class="px-4 text-center md:text-left md:w-1/2 lg:w-2/5">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-black mb-4">Our Vision</h2>
+                <p class="text-lg sm:text-xl md:text-2xl text-black/80 leading-relaxed">
+                    A beauty channel to teach people how to look good, feel good, and keep looking and feeling good.
+                </p>
+            </div>
+            <div class="img-frame w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl md:w-1/2 lg:w-3/5 mx-auto mt-8 md:mt-0 md:ml-8">
+                <img src="mitch.jpg" alt="Michelle Lusung" class="w-full h-auto object-cover" />
+            </div>
+        </section>
+
+        <!-- Slide 3: Why Us? -->
+        <section id="slide-3" class="section">
+            <div class="mx-auto text-center px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-6">
+                    Why <span class="highlight px-3 py-1 rounded-full">Partner</span> with Us?
+                </h2>
+                <p class="text-lg sm:text-xl md:text-2xl text-black/80 max-w-2xl mx-auto">
+                    We offer you direct access to the local markets and beyond.
+                </p>
+                <div class="img-frame w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto mt-8">
+                    <img src="network.jpg" alt="Network" class="w-full h-auto object-cover" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Collaboration Methods -->
+        <section id="slide-4" class="section">
+            <div class="mx-auto w-full px-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-12">Collaboration Methods</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Spark Plan -->
+                    <div class="card-neo text-center p-6">
+                        <div class="eyebrow mb-2">Tier 1</div>
+                        <h3 class="text-2xl font-bold mb-4">Spark Plan</h3>
+                        <div class="text-4xl font-black text-black mb-6">$1,000</div>
+                        <ul class="text-left text-black/80 space-y-2">
+                            <li>✅ 5 posts (1 video / week)</li>
+                            <li>✅ Full setup and management of your TikTok Shop.</li>
+                            <li>✅ Leveraging technology to create the most viral content.</li>
+                            <li>✅ Co-run beauty events and share networks.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Growth Plan -->
+                    <div class="card-neo text-center p-6">
+                        <div class="eyebrow mb-2">Tier 2</div>
+                        <h3 class="text-2xl font-bold mb-4">Growth Plan</h3>
+                        <div class="text-4xl font-black text-black mb-6">$2,000</div>
+                        <ul class="text-left text-black/80 space-y-2">
+                            <li>✅ 15 posts (alternate day posting)</li>
+                            <li>✅ Landing Page Creation to funnel leads (Complimentary)</li>
+                            <li>✅ Full setup and management of your TikTok Shop.</li>
+                            <li>✅ Leveraging technology to create the most viral content.</li>
+                            <li>✅ Co-run beauty events and share networks.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Partnership Plan -->
+                    <div class="card-neo text-center p-6">
+                        <div class="eyebrow mb-2">Tier 3</div>
+                        <h3 class="text-2xl font-bold mb-4">Partnership Plan</h3>
+                        <div class="text-4xl font-black text-black mb-6">$3,000</div>
+                        <ul class="text-left text-black/80 space-y-2">
+                            <li>✅ 30 posts (daily posting)</li>
+                            <li>✅ Full setup and management of your TikTok Shop.</li>
+                            <li>✅ Leveraging technology to create the most viral content.</li>
+                            <li>✅ Co-run beauty events and share networks.</li>
+                            <li>✅ Landing Page Creation to funnel leads</li>
+                            <li>✅ Access to Search Video Optimiser Software</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: What you get -->
+        <section id="slide-5" class="section">
+            <div class="mx-auto w-full px-4 text-center">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-8">What You Get <span class="highlight px-2 py-1 rounded-full">Regardless</span> of Plan</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-left mt-8 max-w-4xl mx-auto">
+                    <div class="card-neo p-6 flex flex-col items-start space-y-3">
+                        <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 15h2v2h-2zm0-8h2v6h-2z"/>
+                        </svg>
+                        <h3 class="text-xl font-bold">Multi-platform Posting</h3>
+                        <p class="text-sm text-black/80">
+                            Facebook, Instagram, TikTok, and Lemon8.
+                        </p>
+                    </div>
+
+                    <div class="card-neo p-6 flex flex-col items-start space-y-3">
+                        <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 15h2v2h-2zm0-8h2v6h-2z"/>
+                        </svg>
+                        <h3 class="text-xl font-bold">TikTok Shop Services</h3>
+                        <p class="text-sm text-black/80">
+                            Full setup and management of your TikTok Shop.
+                        </p>
+                    </div>
+
+                    <div class="card-neo p-6 flex flex-col items-start space-y-3">
+                        <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 15h2v2h-2zm0-8h2v6h-2z"/>
+                        </svg>
+                        <h3 class="text-xl font-bold">AI & Machine Learning</h3>
+                        <p class="text-sm text-black/80">
+                            Leveraging technology to create the most viral content.
+                        </p>
+                    </div>
+
+                    <div class="card-neo p-6 flex flex-col items-start space-y-3">
+                        <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 15h2v2h-2zm0-8h2v6h-2z"/>
+                        </svg>
+                        <h3 class="text-xl font-bold">Events</h3>
+                        <p class="text-sm text-black/80">
+                            Co-run beauty events and share networks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Questions -->
+        <section id="slide-6" class="section">
+            <div class="mx-auto w-full px-4 text-center">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-8">Questions?</h2>
+                <p class="text-lg sm:text-xl md:text-2xl text-black/80">
+                    Feel free to ask us anything!
+                </p>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>
