@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Brand Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles --- */
+        :root {
+            --primary-bg: #FFF9F5; /* A very light, peachy white */
+            --text-dark: #4A4A4A; /* Soft dark grey for text */
+            --accent-primary: #E56B6F; /* A vibrant, warm coral */
+            --accent-secondary: #F4A261; /* A gentle orange accent */
+            --card-bg: #FFFFFF;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Presentation Container --- */
+        .presentation-container {
+            width: 95%;
+            max-width: 1100px;
+            height: 90vh;
+            max-height: 700px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Slides --- */
+        .slide {
+            width: 100%;
+            height: 100%;
+            padding: 40px 60px;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex; /* Shown when active */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Slide Content Styling --- */
+        .slide h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .slide h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .slide h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--accent-secondary);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .slide .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin-top: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .content-grid .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-grid img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .slide-image {
+            max-width: 60%;
+            max-height: 400px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 1.5rem;
+        }
+        
+        .slide ul {
+            list-style-position: inside;
+            text-align: left;
+            max-width: 700px;
+            margin-top: 1.5rem;
+        }
+        
+        .slide ul li {
+            margin-bottom: 1rem;
+        }
+        
+        .slide ul li::marker {
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        /* --- Navigation --- */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: var(--accent-primary);
+            color: white;
+        }
+
+        #prevBtn {
+            left: 20px;
+        }
+
+        #nextBtn {
+            right: 20px;
+        }
+        
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* --- Progress Bar --- */
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        #progressBar {
+            height: 100%;
+            width: 0; /* JS will update this */
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+            transition: width 0.3s ease-out;
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .presentation-container {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+            }
+            .slide {
+                padding: 20px;
+                justify-content: flex-start;
+                padding-top: 60px;
+                overflow-y: auto;
+            }
+            .slide h1 { font-size: 2.5rem; }
+            .slide h2 { font-size: 1.8rem; }
+            .slide p, .slide li { font-size: 1rem; }
+            .slide .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .nav-button {
+                bottom: 20px;
+                top: auto;
+                transform: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+
+        <div class="slide active" data-slide="1">
+            <img src="rhea_tan.jpg" alt="Rhea Tan" class="intro-image">
+            <h2>Hello! Welcome.</h2>
+            <p>A Strategic Proposal for the Singaporean Beauty Market.</p>
+        </div>
+
+        <div class="slide" data-slide="2">
+            <h1>Vision</h1>
+            <p>A health and beauty platform whose audience are encouraged to bring out their inner beauty</p>
+            <img src="vision_image.png" alt="Our Vision for Beauty" class="slide-image">
+        </div>
+
+        <div class="slide" data-slide="3">
+            <h1>Singapore’s Beauty Niche</h1>
+            <h2>3 Types</h2>
+            <div class="content-grid">
+                <div class="grid-item">
+                    <img src="thebeautystorysg_2402 × 1500.png" alt="Explainers Style">
+                    <h3>Explainers</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="le.anneeee_2366 × 1650.png" alt="Influencers Style">
+                    <h3>Influencers</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="jasskwa.rosyfoxy_2400 × 1630.png" alt="China Style">
+                    <h3>China Style</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" data-slide="4">
+            <h1>Competitive Analysis</h1>
+            <h2>A bird’s eye view of where we stand in the market</h2>
+            <div class="content-grid">
+                <div class="grid-item">
+                    <img src="cleansers_1222 × 1270.png" alt="Cleansers Market">
+                    <h3>Cleansers</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="whitening_1174 × 822.png" alt="Whitening Products Market">
+                    <h3>Whitening Products</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="serums_1180 × 846.png" alt="Serums Market">
+                    <h3>Serums</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" data-slide="5">
+             <h1>Deep Selling to Singaporeans</h1>
+             <ul>
+                <li>Singaporean consumers desire personalization. “Beaute Sets" should be reframed as "Expertly Curated Routines"</li>
+                <li>To build credibility with Singapore's discerning consumers, Highlight Papaya enzymes and Algowhite. Focus on Niacinamide, Retinol, and Vitamin C, (Cristaux serum line)</li>
+                <li>Discuss Consumer Pain Points and Hidden Desires - Teach people how to find their inner beauty using these products</li>
+             </ul>
+             </div>
+
+        <div class="slide" data-slide="6">
+            <h1>KPIs and Deliverables</h1>
+            <p style="font-size: 1.8rem; font-weight: bold; color: var(--accent-primary); margin-top: 1rem;">
+                1,000 organic followers (not paid) after 1 month
+            </p>
+            <img src="kpi_growth.png" alt="KPI Growth Chart" class="slide-image">
+        </div>
+
+        <div class="slide" data-slide="7">
+            <h1>Questions?</h1>
+            <p>Ready to discuss how we can make this happen.</p>
+             <img src="questions_discussion.png" alt="Discussion" class="slide-image">
+        </div>
+
+        <button id="prevBtn" class="nav-button">&#10094;</button>
+        <button id="nextBtn" class="nav-button">&#10095;</button>
+
+        <div class="progress-bar-container">
+            <div id="progressBar"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Element Selection ---
+            const slides = document.querySelectorAll('.slide');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const progressBar = document.getElementById('progressBar');
+            const totalSlides = slides.length;
+            
+            let currentSlide = 0;
+
+            // --- Function to update slide visibility and navigation state ---
+            function showSlide(slideIndex) {
+                // Hide all slides first
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+
+                // Show the target slide
+                slides[slideIndex].classList.add('active');
+
+                // Update the progress bar
+                const progressPercentage = ((slideIndex + 1) / totalSlides) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+
+                // Update button states
+                // Disable prev button if on the first slide
+                prevBtn.disabled = slideIndex === 0;
+                // Disable next button if on the last slide
+                nextBtn.disabled = slideIndex === totalSlides - 1;
+            }
+
+            // --- Event Listeners ---
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            // Keyboard navigation for the IT-savvy husband ;)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' && !nextBtn.disabled) {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
+                    prevBtn.click();
+                }
+            });
+
+            // --- Initial State Setup ---
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
